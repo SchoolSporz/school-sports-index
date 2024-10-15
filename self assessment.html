@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Sports Index</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-radar-3d"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://img.freepik.com/free-photo/kids-playing-soccer-cartoon_23-2151451194.jpg?t=st=1728986950~exp=1728990550~hmac=6821352be12e2622051df9f0f05b5c0c0633c456d815bce6f971ef2a02227597&w=360');
+            background-repeat: no-repeat; /* Repeat the background image */
+            background-size: auto; /* Adjust the size as needed */
+            position: relative; /* To position the overlay */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://img.freepik.com/free-photo/portrait-girl-boy-showcasing-beautiful-friendship_23-2151537501.jpg?t=st=1728987205~exp=1728990805~hmac=c58dc5084bf3f3e5d1c4f1b76fb5852281446d51c03a76f76f82bd42deaad261&w=740');
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* No repeat */
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.8); /* White background with some transparency */
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+background-image: url('https://img.freepik.com/free-photo/view-tennis-match-court_23-2151190019.jpg?t=st=1728986281~exp=1728989881~hmac=a80fc2107036f5ed392b1141aaea326e70675e2372d48529152f61147ce6521b&w=1380'); /* Update the path as necessary */
+            background-size: cover; /* Increased from cover to 150% */
+    background-repeat: no-repeat;
+            background-position: center 30%;
+padding: 20px;
+            border-radius: 10px;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        canvas {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .overall-score {
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+        }
+        .summary {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+/* Media Query for small devices */
+        @media (max-width: 600px) {
+            /* Make the table scrollable */
+            .summary {
+                overflow-x: auto; /* Allow horizontal scrolling */
+                display: block; /* Make it block element for scrolling */
+            }
+
+            /* Optional: Adjust text size for smaller screens */
+            h1 {
+                font-size: 1.5em; /* Smaller font size for headings */
+            }
+        th {
+            background-color: #f2f2f2;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>School Sports Index</h1>
+        <form>
+            <label for="peSessions">Number of PE sessions per week</label>
+            <select id="peSessions">
+                <option value=""> Please select one</option>
+		<option value="1">1 session per week</option>
+                <option value="2">2 sessions per week</option>
+                <option value="3">3 sessions per week</option>
+                <option value="4">4 sessions per week</option>
+                <option value="5">5 or more sessions per week</option>
+            </select>
+
+            <label for="afterSchoolStudents">Percentage of students enrolled for After School/Pre School Sports program (Grade 3 onwards)</label>
+            <select id="afterSchoolStudents">
+                <option value=""> Please select one</option>
+		<option value="1">Less than 5%</option>
+                <option value="2">5% to 10%</option>
+                <option value="3">10% to 15%</option>
+                <option value="4">15% to 25%</option>
+                <option value="5">25% or more</option>
+            </select>
+
+            <label for="sections">Number of sections that can play sports simultaneously</label>
+            <select id="sections">
+                <option value=""> Please select one</option>
+		<option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 or more</option>
+            </select>
+
+            <label for="sports">Total number of sports that can be played simultaneously</label>
+            <select id="sports">
+                <option value=""> Please select one</option>
+		<option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 or more</option>
+            </select>
+
+            <label for="studentFeedback">Average student feedback (on a scale of 5)</label>
+            <select id="studentFeedback">
+                <option value=""> Please select one</option>
+		<option value="1">Less than 1.5</option>
+                <option value="2">1.5 to 2.5</option>
+                <option value="3">2.5 to 3.5</option>
+                <option value="4">3.5 to 4.5</option>
+                <option value="5">4.5 or more</option>
+            </select>
+
+            <label for="interSchoolParticipation">Percentage of students participating in inter-school events (Grade 3 onwards)</label>
+            <select id="interSchoolParticipation">
+                <option value=""> Please select one</option>
+		<option value="1">Less than 5%</option>
+                <option value="2">5% to 10%</option>
+                <option value="3">10% to 15%</option>
+                <option value="4">15% to 25%</option>
+                <option value="5">25% or more</option>
+            </select>
+
+            <label for="peTeacherRatio">PE teachers to student ratio (Total students / Number of PE teachers)</label>
+            <select id="peTeacherRatio">
+                <option value=""> Please select one</option>
+		<option value="1">1000 or more</option>
+                <option value="2">Between 500 and 1000</option>
+                <option value="3">Between 100 and 500</option>
+                <option value="4">Between 50 and 100</option>
+                <option value="5">Less than 50</option>
+            </select>
+
+            <label for="parentFeedback">Average parent feedback (on a scale of 5)</label>
+            <select id="parentFeedback">
+                <option value=""> Please select one</option>
+		<option value="1">Less than 1.5</option>
+                <option value="2">1.5 to 2.5</option>
+                <option value="3">2.5 to 3.5</option>
+                <option value="4">3.5 to 4.5</option>
+                <option value="5">4.5 or more</option>
+            </select>
+
+            <label for="structuredCurriculum">Number of age groups with structured sports curriculum</label>
+            <select id="structuredCurriculum">
+                <option value=""> Please select one</option>
+		<option value="1">None</option>
+                <option value="2">1 age group</option>
+                <option value="3">2 age groups</option>
+                <option value="4">3 age groups</option>
+                <option value="5">All age groups</option>
+            </select>
+
+            <label for="propsEquipmentRatio">Props & equipment ratio (Props & equipment per student)</label>
+            <select id="propsEquipmentRatio">
+                <option value=""> Please select one</option>
+		<option value="1">More than 1:16</option>
+                <option value="2">1:16</option>
+                <option value="3">1:8</option>
+                <option value="4">1:4</option>
+                <option value="5">Less than 1:2</option>
+            </select>
+
+            <button type="button" onclick="calculateScore()">Calculate Score</button>
+        </form>
+
+        <div class="overall-score" id="overallScore">Overall Score: 0</div>
+
+        <canvas id="radarChart"></canvas>
+
+        <div class="summary" id="summary">
+            <h2>Summary</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Positive Aspects</th>
+                        <th>Neutral Aspects</th>
+                        <th>Negative Aspects</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Time for Sports</td>
+                        <td id="summaryPositiveTimeForSports"></td>
+                        <td id="summaryNeutralTimeForSports"></td>
+                        <td id="summaryNegativeTimeForSports"></td>
+                    </tr>
+                    <tr>
+                        <td>Space for Sports</td>
+                        <td id="summaryPositiveSpaceForSports"></td>
+                        <td id="summaryNeutralSpaceForSports"></td>
+                        <td id="summaryNegativeSpaceForSports"></td>
+                    </tr>
+                    <tr>
+                        <td>Child</td>
+                        <td id="summaryPositiveChild"></td>
+                        <td id="summaryNeutralChild"></td>
+                        <td id="summaryNegativeChild"></td>
+                    </tr>
+                    <tr>
+                        <td>Facilitator</td>
+                        <td id="summaryPositiveFacilitator"></td>
+                        <td id="summaryNeutralFacilitator"></td>
+                        <td id="summaryNegativeFacilitator"></td>
+                    </tr>
+                    <tr>
+                        <td>Content</td>
+                        <td id="summaryPositiveContent"></td>
+                        <td id="summaryNeutralContent"></td>
+                        <td id="summaryNegativeContent"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+           
+<p style="font-weight: bold; font-size: 16px; text-align: center; margin-top: 20px;">
+    Want to boost your School Sports Index scores and provide an enhanced experience for your students? 
+    <a href="https://edusports.sportzvillage.com/" style="color: #007bff; text-decoration: underline; font-size: 18px;">Click here</a>
+</p>
+
+        </div>
+    </div>
+
+    <script>
+    let radarChart;
+
+    function calculateScore() {
+        // Get values from the form
+        let peSessions = parseFloat(document.getElementById('peSessions').value);
+        let afterSchoolStudents = parseFloat(document.getElementById('afterSchoolStudents').value);
+        let sections = parseFloat(document.getElementById('sections').value);
+        let sports = parseFloat(document.getElementById('sports').value);
+        let studentFeedback = parseFloat(document.getElementById('studentFeedback').value);
+        let interSchoolParticipation = parseFloat(document.getElementById('interSchoolParticipation').value);
+        let peTeacherRatio = parseFloat(document.getElementById('peTeacherRatio').value);
+        let parentFeedback = parseFloat(document.getElementById('parentFeedback').value);
+        let structuredCurriculum = parseFloat(document.getElementById('structuredCurriculum').value);
+        let propsEquipmentRatio = parseFloat(document.getElementById('propsEquipmentRatio').value);
+
+        // Calculate scores for each parameter (Converted to 100 scale)
+        let timeForSports = (peSessions * 0.75 + afterSchoolStudents * 0.25) * 20;
+        let spaceForSports = ((sections + sports) / 10) * 100; // Adjusted to percentage
+        let child = (studentFeedback * 20 + interSchoolParticipation * 20) / 2;
+        let facilitator = ((peTeacherRatio + parentFeedback) / 10) * 100; // Adjusted to percentage
+        let content = ((structuredCurriculum * 20 + propsEquipmentRatio * 20) / 2); // Average of two scores
+
+        // Calculate overall score out of 100
+        let overallScore = (timeForSports + spaceForSports + child + facilitator + content) / 5;
+
+        // Display overall score
+        document.getElementById('overallScore').innerText = `Overall Score: ${overallScore.toFixed(2)}`;
+
+        // Prepare data for radar chart
+        let labels = ["Time for Sports", "Space for Sports", "Child", "Facilitator", "Content"];
+        let scores = [timeForSports, spaceForSports, child, facilitator, content];
+
+        // Generate color based on scores
+        let backgroundColors = scores.map(score => {
+            if (score < 40) return 'rgba(255, 99, 132, 0.6)'; // Red
+            if (score > 80) return 'rgba(75, 192, 192, 0.6)'; // Green
+            return 'rgba(54, 162, 235, 0.6)'; // Blue
+        });
+
+        // Remove previous chart if it exists
+        if (radarChart) {
+            radarChart.destroy();
+        }
+
+        // Create new radar chart
+        radarChart = new Chart(document.getElementById('radarChart'), {
+            type: 'radar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'School Sports Index',
+                    data: scores,
+                    backgroundColor: backgroundColors,
+                    borderColor: 'rgba(0, 0, 0, 0.8)',
+                    borderWidth: 2,
+                    fill: true,
+                }],
+            },
+            options: {
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                    },
+                },
+            },
+        });
+
+        // Clear previous summary before generating new summary
+        clearSummaries();
+
+        // Generate summaries
+        generateSummaries(timeForSports, spaceForSports, child, facilitator, content);
+    }
+
+    function clearSummaries() {
+        // Clear previous positive, neutral, and negative summaries
+        document.getElementById('summaryPositiveTimeForSports').innerText = '';
+        document.getElementById('summaryNeutralTimeForSports').innerText = '';
+        document.getElementById('summaryNegativeTimeForSports').innerText = '';
+
+        document.getElementById('summaryPositiveSpaceForSports').innerText = '';
+        document.getElementById('summaryNeutralSpaceForSports').innerText = '';
+        document.getElementById('summaryNegativeSpaceForSports').innerText = '';
+
+        document.getElementById('summaryPositiveChild').innerText = '';
+        document.getElementById('summaryNeutralChild').innerText = '';
+        document.getElementById('summaryNegativeChild').innerText = '';
+
+        document.getElementById('summaryPositiveFacilitator').innerText = '';
+        document.getElementById('summaryNeutralFacilitator').innerText = '';
+        document.getElementById('summaryNegativeFacilitator').innerText = '';
+
+        document.getElementById('summaryPositiveContent').innerText = '';
+        document.getElementById('summaryNeutralContent').innerText = '';
+        document.getElementById('summaryNegativeContent').innerText = '';
+    }
+
+    function generateSummaries(timeForSports, spaceForSports, child, facilitator, content) {
+        // Time for Sports Summaries
+        if (timeForSports < 40) {
+            document.getElementById('summaryNegativeTimeForSports').innerText = 
+                "The time allocated for sports is significantly insufficient, indicating a need for increased PE sessions and after-school programs.";
+        } else if (timeForSports > 80) {
+            document.getElementById('summaryPositiveTimeForSports').innerText = 
+                "The time allocated for sports is excellent, indicating that the school offers ample opportunities for students to engage in physical activity.";
+        } else {
+            document.getElementById('summaryNeutralTimeForSports').innerText = 
+                "The time allocated for sports is fair, and while there are some opportunities, reviewing current offerings could enhance student participation.";
+        }
+
+        // Space for Sports Summaries
+        if (spaceForSports < 40) {
+            document.getElementById('summaryNegativeSpaceForSports').innerText = 
+                "The facilities for sports activities are insufficient, indicating a need for more sections and sports offerings.";
+        } else if (spaceForSports > 80) {
+            document.getElementById('summaryPositiveSpaceForSports').innerText = 
+                "The school has excellent facilities that can accommodate multiple sports activities, ensuring a rich sports culture.";
+        } else {
+            document.getElementById('summaryNeutralSpaceForSports').innerText = 
+                "The school has adequate space for sports; however, improvements can be made to further enhance student engagement in activities.";
+        }
+
+        // Child Summaries
+        if (child < 40) {
+            document.getElementById('summaryNegativeChild').innerText = 
+                "Student feedback indicates dissatisfaction with the current sports programs. It is recommended to revisit the sports curriculum for improvements.";
+        } else if (child > 80) {
+            document.getElementById('summaryPositiveChild').innerText = 
+                "Positive feedback from students indicates that they enjoy the sports programs, reflecting well on the school's efforts.";
+        } else {
+            document.getElementById('summaryNeutralChild').innerText = 
+                "The student feedback is moderate. Addressing some concerns can enhance overall student satisfaction in sports activities.";
+        }
+
+        // Facilitator Summaries
+        if (facilitator < 40) {
+            document.getElementById('summaryNegativeFacilitator').innerText = 
+                "The teacher-to-student ratio is concerning, indicating that more PE teachers are needed to support student engagement effectively.";
+        } else if (facilitator > 80) {
+            document.getElementById('summaryPositiveFacilitator').innerText = 
+                "The current teacher-to-student ratio is excellent, providing substantial support for students participating in sports activities.";
+        } else {
+            document.getElementById('summaryNeutralFacilitator').innerText = 
+                "The teacher-to-student ratio is acceptable; however, further improvements could enhance support for students in sports.";
+        }
+
+        // Content Summaries
+        if (content < 40) {
+            document.getElementById('summaryNegativeContent').innerText = 
+                "The structured curriculum for sports is lacking. There is a need for more focus on comprehensive sports education.";
+        } else if (content > 80) {
+            document.getElementById('summaryPositiveContent').innerText = 
+                "A comprehensive structured curriculum is in place, providing excellent sports education for students.";
+        } else {
+            document.getElementById('summaryNeutralContent').innerText = 
+                "The sports curriculum is reasonable, but adjustments can enhance the educational experience for students.";
+        }
+    }
+</script>
+
+</body>
+</html>
