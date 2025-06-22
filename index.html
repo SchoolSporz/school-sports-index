@@ -116,7 +116,16 @@ button:disabled {
 canvas {
     margin-top: 25px;
     width: 100%;
+    max-height: 400px;
 }
+
+/* For smaller devices — adjust height */
+@media (max-width: 600px) {
+    canvas {
+        max-height: 300px;
+    }
+}
+
 
 .overall-score {
     text-align: center;
@@ -517,6 +526,8 @@ barChart = new Chart(document.getElementById('barChart'), {
         }]
     },
     options: {
+	responsive: true,
+maintainAspectRatio: false,
         animation: {
             duration: 1000,
             easing: 'easeOutBounce'
