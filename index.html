@@ -290,46 +290,53 @@ a:hover {
       <div class="logo">
     <img src="https://sportzvillage.com/wp-content/uploads/2024/08/Sportz-Village-Banner-min.jpg" alt="Sportz Village Logo">
 </div>
-<h1>School Sports Index</h1>
 
 
 <div class="focus-areas">
+  <h1 style="text-align:center; color:#222; font-size:36px; margin-bottom:20px;">School Sports Index</h1>
   <h2>The 5 Focus Areas: What They Are and Why They Matter</h2>
+
   <p>
     The <strong>Get Kids To Play audit framework</strong>, built from two decades of experience by Sportz Village, identifies five critical parameters that directly influence students' participation in active play and physical education in schools. These focus areas not only assess the availability and quality of sports infrastructure and curriculum but also measure how well a program meets the expectations of children, parents, and facilitators. Each area is carefully chosen based on its proven impact on promoting sustained, structured, and inclusive sports engagement for school students.
   </p>
 
   <div class="focus-cards">
+  <!-- Time -->
+  <div class="focus-card">
+    <div class="icon-badge">⏰</div>
+    <h3>Time</h3>
+    <p>Allocating sufficient time for sports ensures regular participation and physical literacy. This area assesses the number of scheduled PE periods and after-school sports engagement.</p>
+  </div>
+
+  <!-- Space -->
   <div class="focus-card">
     <div class="icon-badge">🛝</div>
     <h3>Space</h3>
     <p>Adequate space is essential to accommodate various physical activities and sports for students. This parameter evaluates how well the school infrastructure supports simultaneous sports sessions and the variety of sports options provided.</p>
   </div>
 
+  <!-- Child -->
   <div class="focus-card">
-    <div class="icon-badge">⏰</div>
-    <h3>Time</h3>
-    <p>Allocating sufficient time for sports ensures regular participation and physical literacy. This area assesses the number of scheduled PE periods and opportunities for after-school sports engagement.</p>
+    <div class="icon-badge">🧒</div>
+    <h3>Child</h3>
+    <p>The core purpose of any school sports program is to meet the needs and expectations of students. This parameter measures students’ interest in PE and their participation in inter-school competitions.</p>
   </div>
 
+  <!-- Facilitator -->
   <div class="focus-card">
     <div class="icon-badge">👩‍🏫</div>
     <h3>Facilitator</h3>
     <p>The quality and availability of trained PE teachers directly affect program delivery and student engagement. This parameter evaluates the student-teacher ratio and the qualifications of PE staff.</p>
   </div>
 
+  <!-- Content -->
   <div class="focus-card">
     <div class="icon-badge">📚</div>
     <h3>Content</h3>
     <p>A well-structured sports curriculum ensures age-appropriate, progressive, and inclusive activities for all students. This focus area assesses both the curriculum coverage and availability of adequate equipment.</p>
   </div>
-
-  <div class="focus-card">
-    <div class="icon-badge">🧒</div>
-    <h3>Child</h3>
-    <p>The core purpose of any school sports program is to meet the needs and expectations of students. This parameter measures students’ interest in PE and their participation in inter-school competitions.</p>
-  </div>
 </div>
+
 
 
         <form>
@@ -364,11 +371,11 @@ a:hover {
             <label for="peSessions">How many PE periods does each section have in a week? (1 period = 40 minutes)</label>
             <select id="peSessions" onchange="validateInputs()">
                 <option value=""> Please select one</option>
-		<option value="1">1 session per week</option>
-                <option value="2">2 sessions per week</option>
-                <option value="3">3 sessions per week</option>
-                <option value="4">4 sessions per week</option>
-                <option value="5">5 or more sessions per week</option>
+		<option value="1">1 period per week</option>
+                <option value="2">2 periods per week</option>
+                <option value="3">3 periods per week</option>
+                <option value="4">4 periods per week</option>
+                <option value="5">5 or more periods per week</option>
             </select>
 
             <label for="afterSchoolStudents">What % of students (Grade 3 and above) take part in sports activities offered by the school outside regular school hours (before or after school)?</label>
@@ -401,7 +408,7 @@ a:hover {
                 <option value="5">5 or more</option>
             </select>
 
-	<label for="studentFeedback">How satisfied are you with students’ interest and attitude towards sports and PE? (on a scale of 1 to 5)</label>
+	<label for="studentFeedback">In your opinion, on a scale of 1 to 5, with 1 being the lowest and 5 highest, how satisfied are students with the School Sports & PE program. Consider factors such as Interest, Inclusion & Fun.</label>
 	<select id="studentFeedback" onchange="validateInputs()">
 	    <option value="">Please select one</option>
     	<option value="1">1 - Not at all satisfied</option>
@@ -422,27 +429,28 @@ a:hover {
                 <option value="5">25% or more</option>
             </select>
 
-	<label for="peTeacherRatio">What is the PE teacher-to-student ratio? (e.g. 1 PE teacher for every 200 students)</label>
-	<select id="peTeacherRatio" onchange="validateInputs()">
-    	<option value="">Please select one</option>
-    	<option value="1">1 PE teacher for every 801–1000 students</option>
-    	<option value="2">1 PE teacher for every 601–800 students</option>
-    	<option value="3">1 PE teacher for every 401–600 students</option>
-    	<option value="4">1 PE teacher for every 201–400 students</option>
-    	<option value="5">1 PE teacher for every 100–200 students</option>
-	</select>
+	<label for="peTeacherRatio">How many students does one PE teacher handle? (e.g. 500 students per PE teacher)</label>
+<select id="peTeacherRatio" onchange="validateInputs()">
+    <option value="">Please select one</option>
+    <option value="1">More than 1000 students per PE teacher</option>
+    <option value="2">Between 1000 and 500 students per PE teacher</option>
+    <option value="3">Between 500 and 100 students per PE teacher</option>
+    <option value="4">Between 100 and 50 students per PE teacher</option>
+    <option value="5">Less than 50 students per PE teacher</option>
+</select>
 
 
-            <label for="certifiedPETeachers">How many certified or formally trained PE teachers are currently employed in your school?</label>
-            <select id="certifiedPETeachers" onchange="validateInputs()">
-	 <option value=""> Please select one</option>
-	<option value="1">None</option>
-	<option value="2">Only one teacher has a sports degree</option>
-	<option value="3">Some teachers have, some don’t</option>
-	<option value="4">All teachers have a sports degree</option>
-	<option value="5">All teachers have a sports degree, one has a Master’s</option>
 
-            </select>
+<label for="peReportingFrequency">What is the frequency of class plan and actuals reporting system for PE teachers?</label>
+<select id="peReportingFrequency" onchange="validateInputs()">
+    <option value="">Please select one</option>
+    <option value="1">No structured reporting system</option>
+    <option value="2">Quarterly reporting</option>
+    <option value="3">Monthly reporting</option>
+    <option value="4">Weekly reporting</option>
+    <option value="5">Daily reporting</option>
+</select>
+
 
             <label for="structuredCurriculum">For how many age groups does the school have a structured sports curriculum?(Age groups: Pre-Primary, Primary, Middle School, Senior School)</label>
             <select id="structuredCurriculum" onchange="validateInputs()">
@@ -454,15 +462,16 @@ a:hover {
                 <option value="5">All age groups</option>
             </select>
 
-            <label for="propsEquipmentRatio">What is the student-to-prop ratio in a PE class? (e.g., 1 ball for every 8 students)</label>
-            <select id="propsEquipmentRatio" onchange="validateInputs()">
-                <option value="">Please select one</option>
-    		<option value="1">More than 1 prop for every 20 students</option>
-    		<option value="2">1 prop for every 16 to 20 students</option>
-    		<option value="3">1 prop for every 11 to 15 students</option>
-    		<option value="4">1 prop for every 6 to 10 students</option>
-    		<option value="5">1 prop for every 5 or fewer students</option>
-            </select>
+           <label for="propsEquipmentRatio">What is the student-to-prop ratio in a PE class? (e.g., 1 ball for every 8 students)</label>
+<select id="propsEquipmentRatio" onchange="validateInputs()">
+    <option value="">Please select one</option>
+    <option value="1">1 prop for more than 16 students</option>
+    <option value="2">1 prop for every 16 students</option>
+    <option value="3">1 prop for every 8 students</option>
+    <option value="4">1 prop for every 4 students</option>
+    <option value="5">1 prop for every 2 students or less</option>
+</select>
+
 
             <button type="button" id="calcBtn" onclick="calculateScore()" disabled>Calculate Score</button>
 
@@ -544,7 +553,7 @@ a:hover {
     const studentFeedback = document.getElementById('studentFeedback').value;
     const interSchoolParticipation = document.getElementById('interSchoolParticipation').value;
     const peTeacherRatio = document.getElementById('peTeacherRatio').value;
-    const certifiedPETeachers = document.getElementById('certifiedPETeachers').value;
+    const peReportingFrequency = document.getElementById('peReportingFrequency').value;
     const structuredCurriculum = document.getElementById('structuredCurriculum').value;
     const propsEquipmentRatio = document.getElementById('propsEquipmentRatio').value;
 
@@ -554,7 +563,7 @@ a:hover {
         name && designation && school && city && email && contact &&
         peSessions && afterSchoolStudents && sections && sports &&
         studentFeedback && interSchoolParticipation && peTeacherRatio &&
-        certifiedPETeachers && structuredCurriculum && propsEquipmentRatio
+        peReportingFrequency && structuredCurriculum && propsEquipmentRatio
     ) {
         calcBtn.disabled = false;
     } else {
@@ -579,7 +588,7 @@ a:hover {
     const studentFeedback = document.getElementById('studentFeedback').value;
     const interSchoolParticipation = document.getElementById('interSchoolParticipation').value;
     const peTeacherRatio = document.getElementById('peTeacherRatio').value;
-    const certifiedPETeachers = document.getElementById('certifiedPETeachers').value;
+    const peReportingFrequency = document.getElementById('peReportingFrequency').value;
     const structuredCurriculum = document.getElementById('structuredCurriculum').value;
     const propsEquipmentRatio = document.getElementById('propsEquipmentRatio').value;
 
@@ -588,7 +597,7 @@ a:hover {
         !name || !designation || !school || !city || !email || !contact ||
         !peSessions || !afterSchoolStudents || !sections || !sports ||
         !studentFeedback || !interSchoolParticipation || !peTeacherRatio ||
-        !certifiedPETeachers || !structuredCurriculum || !propsEquipmentRatio
+        !peReportingFrequency || !structuredCurriculum || !propsEquipmentRatio
     ) {
         alert("Please fill out all fields before calculating the score.");
         return; // stop function execution
@@ -606,7 +615,7 @@ a:hover {
 	let child = (studentFeedback * 0.5 + interSchoolParticipation * 0.5) * 20;
 
 	// Facilitator (50% PE Teacher Ratio, 50% Certified Teachers/Parent Feedback)
-	let facilitator = (peTeacherRatio * 0.5 + certifiedPETeachers * 0.5) * 20;
+	let facilitator = (peTeacherRatio * 0.5 + peReportingFrequency * 0.5) * 20;
 
 	// Content (75% Structured Curriculum, 25% Props & Equipment Ratio)
 	let content = (structuredCurriculum * 0.75 + propsEquipmentRatio * 0.25) * 20;
@@ -623,11 +632,12 @@ a:hover {
         let scores = [timeForSports, spaceForSports, child, facilitator, content];
 
         // Generate color based on scores
-        let backgroundColors = scores.map(score => {
-            if (score < 40) return 'rgba(255, 99, 132, 0.6)'; // Red
-            if (score > 80) return 'rgba(75, 192, 192, 0.6)'; // Green
-            return 'rgba(54, 162, 235, 0.6)'; // Blue
-        });
+       let backgroundColors = scores.map(score => {
+    if (score < 40) return 'rgba(255, 206, 86, 0.8)'; // Yellow
+    if (score > 80) return 'rgba(75, 192, 192, 0.8)'; // Green
+    return 'rgba(54, 162, 235, 0.8)'; // Blue
+});
+
 
 // Remove previous chart if it exists
 if (barChart) {
@@ -737,7 +747,7 @@ maintainAspectRatio: false,
     // Time for Sports
     if (timeForSports < 40) {
         document.getElementById('summaryNegativeTimeForSports').innerText = 
-            "The time allocated for sports appears insufficient, which may limit students’ opportunities for regular physical activity. Increasing PE periods and after-school activity options is recommended.";
+            "The time allocated for sports can be improved to provide students with more regular opportunities for physical activity. Increasing PE periods and after-school activities is encouraged.";
     } else if (timeForSports > 80) {
         document.getElementById('summaryPositiveTimeForSports').innerText = 
             "The time allocated for sports is excellent, offering students ample opportunities for regular activity. Maintaining this standard and exploring ways to further enrich the quality and variety of activities is encouraged.";
@@ -749,7 +759,7 @@ maintainAspectRatio: false,
     // Space for Sports
     if (spaceForSports < 40) {
         document.getElementById('summaryNegativeSpaceForSports').innerText = 
-            "The available space for sports activities is limited, restricting participation and variety. Expanding or optimizing the use of available areas could improve student involvement.";
+            "The available space for sports can be enhanced to support greater participation and activity variety. Exploring options to optimize or expand current spaces is recommended.";
     } else if (spaceForSports > 80) {
         document.getElementById('summaryPositiveSpaceForSports').innerText = 
             "The school provides excellent sports facilities supporting diverse physical activities. Periodic reviews to identify areas for further optimization or diversification can help sustain long-term engagement.";
@@ -761,7 +771,7 @@ maintainAspectRatio: false,
     // Child Participation & Achievement
     if (child < 40) {
         document.getElementById('summaryNegativeChild').innerText = 
-            "Student participation and achievements in sports are low. Creating more in-school opportunities and encouraging inter-school participation could improve enthusiasm and outcomes.";
+            "Student participation and achievements in sports can be strengthened by creating more opportunities within the school and encouraging inter-school participation.";
     } else if (child > 80) {
         document.getElementById('summaryPositiveChild').innerText = 
             "Student participation and achievements in sports are commendable, both internally and externally. Continued focus on providing new challenges and advanced opportunities will help maintain momentum and nurture future talent.";
@@ -770,22 +780,23 @@ maintainAspectRatio: false,
             "Student participation is moderate, with scope to further increase engagement and competitive exposure. Offering additional events or structured opportunities may help.";
     }
 
-    // Facilitator Capacity & Feedback
-    if (facilitator < 40) {
-        document.getElementById('summaryNegativeFacilitator').innerText = 
-            "The current PE teaching capacity and qualifications are limited, which may affect program delivery and student supervision. Increasing staff numbers or enhancing qualifications is recommended.";
-    } else if (facilitator > 80) {
-        document.getElementById('summaryPositiveFacilitator').innerText = 
-            "The PE teacher-student ratio and staff qualifications are strong, ensuring effective delivery and supervision. Regular professional development opportunities and activity innovations can help sustain and enhance program quality.";
-    } else {
-        document.getElementById('summaryNeutralFacilitator').innerText = 
-            "The PE teaching capacity is satisfactory, though improvements in staffing or qualifications could further strengthen activity management and student support.";
-    }
+    // Facilitator System & Support
+if (facilitator < 40) {
+    document.getElementById('summaryNegativeFacilitator').innerText = 
+        "The current PE teaching capacity and reporting systems can be improved. Establishing a structured and frequent reporting process will help enhance program delivery and accountability.";
+} else if (facilitator > 80) {
+    document.getElementById('summaryPositiveFacilitator').innerText = 
+        "The PE teacher-student ratio and reporting frequency are excellent, ensuring effective oversight and continuous program improvement. Continue regular monitoring and feedback mechanisms to sustain quality.";
+} else {
+    document.getElementById('summaryNeutralFacilitator').innerText = 
+        "The PE staffing and reporting systems are adequate, though moving towards more frequent reporting and review mechanisms could help further strengthen program management.";
+}
+
 
     // Sports Program Structure & Resources
     if (content < 40) {
         document.getElementById('summaryNegativeContent').innerText = 
-            "The sports program lacks structure and adequate resources. Developing a clear, grade-specific curriculum and improving access to quality equipment would enhance student experience.";
+            "The sports program can be made more effective by developing a clear, age-appropriate curriculum and improving access to quality equipment.";
     } else if (content > 80) {
         document.getElementById('summaryPositiveContent').innerText = 
             "The school’s sports program is well-structured and resourced, providing a comprehensive experience for students. Periodic curriculum reviews and resource updates are recommended to align with evolving student needs and best practices.";
@@ -794,6 +805,7 @@ maintainAspectRatio: false,
             "The sports program structure and resources are fair, but minor improvements in curriculum planning and resource allocation could improve effectiveness.";
     }
 }
+
 
 </script>
 
