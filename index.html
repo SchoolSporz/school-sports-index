@@ -439,6 +439,17 @@ a:hover {
     <option value="5">Less than 50 students per PE teacher</option>
 </select>
 
+<label for="peClassGroupSize">
+How many students does one PE teacher handle during a typical PE class?
+</label>
+<select id="peClassGroupSize" onchange="validateInputs()">
+    <option value="">Please select one</option>
+    <option value="1">More than 45 students</option>
+    <option value="2">41 to 45 students</option>
+    <option value="3">36 to 40 students</option>
+    <option value="4">31 to 35 students</option>
+    <option value="5">30 or fewer students</option>
+</select>
 
 
 <label for="peReportingFrequency">What is the frequency of class plan and actuals reporting system for PE teachers?</label>
@@ -461,6 +472,19 @@ a:hover {
                 <option value="4">3 age groups</option>
                 <option value="5">All age groups</option>
             </select>
+
+<label for="assessmentType">
+What types of assessments are conducted as part of your PE and Sports Program?
+</label>
+<select id="assessmentType" onchange="validateInputs()">
+    <option value="">Please select one</option>
+    <option value="1">No assessments</option>
+    <option value="2">Only general observation</option>
+    <option value="3">Fitness or skill assessments</option>
+    <option value="4">Fitness and skill assessments</option>
+    <option value="5">Fitness, skill, and knowledge assessments</option>
+</select>
+
 
            <label for="propsEquipmentRatio">What is the student-to-prop ratio in a PE class? (e.g., 1 ball for every 8 students)</label>
 <select id="propsEquipmentRatio" onchange="validateInputs()">
@@ -572,8 +596,10 @@ const sportsData = getValueAndText('sports');
 const studentFeedbackData = getValueAndText('studentFeedback');
 const interSchoolParticipationData = getValueAndText('interSchoolParticipation');
 const peTeacherRatioData = getValueAndText('peTeacherRatio');
+const peClassGroupSizeData = getValueAndText('peClassGroupSize');
 const peReportingFrequencyData = getValueAndText('peReportingFrequency');
 const structuredCurriculumData = getValueAndText('structuredCurriculum');
+const assessmentTypeData = getValueAndText('assessmentType');
 const propsEquipmentRatioData = getValueAndText('propsEquipmentRatio');
 
 
@@ -618,30 +644,32 @@ const sportsData = getValueAndText('sports');
 const studentFeedbackData = getValueAndText('studentFeedback');
 const interSchoolParticipationData = getValueAndText('interSchoolParticipation');
 const peTeacherRatioData = getValueAndText('peTeacherRatio');
+const peClassGroupSizeData = getValueAndText('peClassGroupSize');
 const peReportingFrequencyData = getValueAndText('peReportingFrequency');
 const structuredCurriculumData = getValueAndText('structuredCurriculum');
+const assessmentTypeData = getValueAndText('assessmentType');
 const propsEquipmentRatioData = getValueAndText('propsEquipmentRatio');
 
 
     // If any field is empty — alert user
     if (
-        !name || !designation || !school || !city || !email || !contact ||
-        !peSessions || !afterSchoolStudents || !sections || !sports ||
-        !studentFeedback || !interSchoolParticipation || !peTeacherRatio ||
-        !peReportingFrequency || !structuredCurriculum || !propsEquipmentRatio
-    ) {
-        alert("Please fill out all fields before calculating the score.");
-        return; // stop function execution
-    }
+    !name || !designation || !school || !city || !email || !contact ||
+    !peSessions || !afterSchoolStudents || !sections || !sports ||
+    !studentFeedback || !interSchoolParticipation || !peTeacherRatio ||
+    !peClassGroupSize || !peReportingFrequency || !structuredCurriculum ||
+    !assessmentType || !propsEquipmentRatio
+) {
+    alert("Please fill out all fields before calculating the score.");
+    return;
+}
 
 	// Calculate scores for each parameter (Converted to 100 scale)
 
 let timeForSports = (peSessionsData.value * 0.75 + afterSchoolStudentsData.value * 0.25) * 20;
 let spaceForSports = (sectionsData.value * 0.75 + sportsData.value * 0.25) * 20;
 let child = (studentFeedbackData.value * 0.5 + interSchoolParticipationData.value * 0.5) * 20;
-let facilitator = (peTeacherRatioData.value * 0.5 + peReportingFrequencyData.value * 0.5) * 20;
-let content = (structuredCurriculumData.value * 0.75 + propsEquipmentRatioData.value * 0.25) * 20;
-
+let facilitator = (peTeacherRatioData.value * 0.25 + peClassGroupSizeData.value * 0.25 + peReportingFrequencyData.value * 0.5) * 20;
+let content = (structuredCurriculumData.value * 0.5 + assessmentTypeData.value * 0.25 + propsEquipmentRatioData.value * 0.25) * 20;
 
 
 
@@ -850,26 +878,26 @@ fetch("https://script.google.com/macros/s/AKfycbwJ0rDWgk66C6vzJGXUK_jlq9LtIBS-Z9
     // Facilitator System & Support
 if (facilitator < 40) {
     document.getElementById('summaryNegativeFacilitator').innerText = 
-        "The current PE teaching capacity and reporting systems can be improved. Establishing a structured and frequent reporting process will help enhance program delivery and accountability.";
+        "The current PE staffing, class size, and reporting systems require attention. Consider reducing the number of students per class and implementing a regular reporting process to ensure better engagement and accountability.";
 } else if (facilitator > 80) {
     document.getElementById('summaryPositiveFacilitator').innerText = 
-        "The PE teacher-student ratio and reporting frequency are excellent, ensuring effective oversight and continuous program improvement. Continue regular monitoring and feedback mechanisms to sustain quality.";
+        "The PE teacher-student ratio, class group size, and reporting frequency are strong, supporting effective program delivery. Continue with structured reporting and manageable class sizes to maintain quality.";
 } else {
     document.getElementById('summaryNeutralFacilitator').innerText = 
-        "The PE staffing and reporting systems are adequate, though moving towards more frequent reporting and review mechanisms could help further strengthen program management.";
+        "The PE staffing and systems are functional, but reviewing class sizes and improving the frequency of reporting could enhance the overall effectiveness of the program.";
 }
 
 
     // Sports Program Structure & Resources
     if (content < 40) {
         document.getElementById('summaryNegativeContent').innerText = 
-            "The sports program can be made more effective by developing a clear, age-appropriate curriculum and improving access to quality equipment.";
+            "There is an opportunity to further enhance the sports program by strengthening the curriculum framework, expanding equipment availability, and introducing a more comprehensive assessment approach. These improvements can support better student engagement and learning outcomes.";
     } else if (content > 80) {
         document.getElementById('summaryPositiveContent').innerText = 
-            "The school’s sports program is well-structured and resourced, providing a comprehensive experience for students. Periodic curriculum reviews and resource updates are recommended to align with evolving student needs and best practices.";
+           "The school offers a well-rounded sports program with a structured curriculum, adequate resources, and effective assessment practices. Ongoing refinement will help sustain and build on this strong foundation.";
     } else {
         document.getElementById('summaryNeutralContent').innerText = 
-            "The sports program structure and resources are fair, but minor improvements in curriculum planning and resource allocation could improve effectiveness.";
+            "The current structure of the sports program is functional, with scope to enhance its effectiveness through more consistent curriculum planning, improved access to equipment, and structured student assessments.";
     }
 }
 function handleConnectResponse(answer) {
